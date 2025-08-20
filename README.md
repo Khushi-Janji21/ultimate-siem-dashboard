@@ -190,33 +190,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Khushi Janji**
 - GitHub: [@Khushi-Janji21](https://github.com/Khushi-Janji21)
-- LinkedIn: [Your LinkedIn Profile]
+- LinkedIn: Khushi janji
 
 ---
-
-⭐ **Star this repository if you found it helpful!**
-
-## 🖼️ Screenshots
-
-*Add screenshots of your dashboard here*
-
-1. **Main Dashboard View**
-   - Overview of security statistics
-   - Interactive charts and graphs
-
-2. **Event Filtering Interface**
-   - Advanced search capabilities
-   - Real-time filtering options
-
-3. **Alert Management Panel**
-   - Active alerts display
-   - Status tracking system
-
-4. **Export Functionality**
-   - Excel and PDF export options
-   - Comprehensive reporting features
-
-
 
 ![Python](https://img.shields.io/badge/python-v3.8+-blue.svg)
 ![Flask](https://img.shields.io/badge/flask-2.3.3-green.svg)
