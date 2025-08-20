@@ -10,8 +10,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 import io
 import os
+from dotenv import load_dotenv
 from database import DatabaseManager
-
+# Load environment variables
+load_dotenv()
 # Create Flask application
 app = Flask(__name__)
 
@@ -20,16 +22,24 @@ db = DatabaseManager()
 
 # Email configuration (you'll need to update these)
 # Replace the hardcoded EMAIL_CONFIG with:
+# Replace the EMAIL_CONFIG section in your app.py (around line 13-20) with this:
+
 EMAIL_CONFIG = {
     'smtp_server': os.getenv('SMTP_SERVER', 'smtp.gmail.com'),
     'smtp_port': int(os.getenv('SMTP_PORT', '587')),
-    'email': os.getenv('EMAIL_ADDRESS', 'your-email@gmail.com'),
-    'password': os.getenv('EMAIL_PASSWORD', 'your-app-password'),
-    'recipient': os.getenv('ALERT_RECIPIENT', 'security-team@company.com')
+    'email': os.getenv('EMAIL_ADDRESS'),
+    'password': os.getenv('EMAIL_PASSWORD'), 
+    'recipient': os.getenv('ALERT_RECIPIENT')
 }
+
 def send_alert_email(event_data):
     """Send email alert for critical events"""
     try:
+        # Check if email configuration is available
+        if not all([EMAIL_CONFIG['email'], EMAIL_CONFIG['password'], EMAIL_CONFIG['recipient']]):
+            print("⚠️ Email configuration not complete. Skipping email alert.")
+            return False
+            
         msg = MIMEMultipart()
         msg['From'] = EMAIL_CONFIG['email']
         msg['To'] = EMAIL_CONFIG['recipient']
@@ -62,7 +72,6 @@ def send_alert_email(event_data):
     except Exception as e:
         print(f"❌ Email alert failed: {str(e)}")
         return False
-
 # Route for main dashboard
 @app.route('/')
 def dashboard():
